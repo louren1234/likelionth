@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+
+{% block contents %}
+<div class="container">
+
+{% if error %}
+    {{ error }}
+    <br>
+    <br>
+{% endif %}
+
+<h1>Login</h1>
+
+<form method="POST" action="{% url 'login' %}">
+    {%csrf_token%}
+    Username:
+    <br>
+    <input name="username" type="text" value="">
+    <br>
+    Password:
+    <br>
+    <input name="password" type="password" value="">
+    <br>
+    <br>
+    <input class="btn btn-primary" type="submit" value="Login">
+    <br><br>
+    <a href="{% provider_login_url 'google' %}" class="btn btn-primary">구글 로그인</a>
+    <a href="{% provider_login_url 'naver' %}" class="btn btn-primary">네이버 로그인</a>
+</form>
+</div>
+{%endblock%}
